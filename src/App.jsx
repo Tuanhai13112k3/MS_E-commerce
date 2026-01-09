@@ -1,10 +1,10 @@
 import './App.css'
-import MainLayout from './layouts/MainLayout'
+import Login from './features/auth/components/LoginForm'
 
 function App() {
 
   return (
-    <MainLayout />
+    <Login />
   )
 }
 
