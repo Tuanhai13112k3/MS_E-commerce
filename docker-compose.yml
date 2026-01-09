@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  app:
+    # Trỏ vào file dev vừa tạo
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ecommerce-dev
+
+    # Map cổng 5000 máy bạn -> cổng 5173 (mặc định của Vite)
+    ports:
+      - "5000:5173"
+
+    # QUAN TRỌNG NHẤT: Đồng bộ file máy bạn vào trong Docker
+    volumes:
+      - .:/app
+      - /app/node_modules # Giữ lại node_modules của container, không cho máy thật đè lên
+
+    restart: always
