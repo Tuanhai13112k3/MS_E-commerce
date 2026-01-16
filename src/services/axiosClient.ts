@@ -1,0 +1,28 @@
+import { BASE_API } from "@/assets/constants";
+import axios from "axios";
+
+const axiosClient = axios.create({
+  baseURL: BASE_API,
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+axiosClient.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("access-token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+axiosClient.interceptors.response.use(
+  (response) => response.data,
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+export default axiosClient;
