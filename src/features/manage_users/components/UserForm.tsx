@@ -120,22 +120,22 @@ const UserForm = ({ data, handleCancel }: UserFormProps) => {
                                 )}
                             </div>
                         </div>
-                        <div className='flex gap-4 justify-end mt-4'>
-                            <BaseButton
-                                type="outline"
-                                size='lg'
-                                handleClick={handleCancel}
-                            >Cancel</BaseButton>
-                            <BaseButton size='lg' isDisabled={isUserUpdatePending || isUserCreationPending}>
-                                Save
-                            </BaseButton>
-                            {isEdit &&
-                                <BaseButton size='lg' type='danger' handleClick={handleDeleteUser} isDisabled={isUserDeletePending}>
-                                    Delete
-                                </BaseButton>
-                            }
-                        </div>
                     </form>
+                    <div className='flex gap-4 justify-end mt-4'>
+                        <BaseButton
+                            type="outline"
+                            size='lg'
+                            handleClick={handleCancel}
+                        >Cancel</BaseButton>
+                        <BaseButton size='lg' handleClick={handleSubmit(handleFormSubmit)} isDisabled={isUserUpdatePending || isUserCreationPending}>
+                            Save
+                        </BaseButton>
+                        {isEdit &&
+                            <BaseButton size='lg' type='danger' handleClick={handleDeleteUser} isDisabled={isUserDeletePending}>
+                                Delete
+                            </BaseButton>
+                        }
+                    </div>
                 </div>
             </div>
         </>
